@@ -1,0 +1,192 @@
+<html>
+	<head>
+		<style>
+			body
+			{
+				padding : 0;
+				margin : 0;
+				background-color : white ;
+			}
+			.nav{
+				overflow: hidden;
+				background-color: #111;
+				margin : 0;
+				padding : 0;
+				text-align : center;
+				height : 80px;
+				width : 100%;
+				color : red;
+				font-size : 25px;
+			}
+			.nav a
+			{
+				float: left;
+				color : #f2f2f2;
+				display: block;
+				text-align: center;
+				padding: 20px 50px;
+				text-decoration: none;
+
+			}
+			.sidenav {
+				margin-top : 80px;
+				height: 100%;
+				width: 150px;
+				position: fixed;
+				z-index: 1;
+				top: 0;
+				left: 0;
+				background-color : rgba(0,0,255,0.3);
+				overflow-x: hidden;
+				padding-top: 20px;
+			}
+
+			.sidenav a {
+    				padding: 6px 6px 6px 32px;
+    				text-decoration: none;
+    				font-size: 25px;
+   					color: black;
+    				display: block;
+			}
+
+			.sidenav a:hover {
+
+					background-color: rgba(106,90,205,0.8);
+					color : black;
+
+			}
+			.main {
+				 margin-top : 10%;
+   	 			 /* Same as the width of the sidenav */
+			}
+			@media screen and (max-height: 450px) {
+  				.sidenav {padding-top: 15px;}
+  				.sidenav a {font-size: 18px;}
+			}
+			table
+			{
+				width : 60%;
+				border-collapse : collapse;
+				border-spacing : 0;
+				margin-left : 10px;
+				margin-top : 4%;
+			}
+			th, td
+			{
+				border: 2px solid black;
+				text-align: center;
+				background-color : rgba(216,191,216,0.5);
+			}
+			th
+			{
+				background-color :#00fa9a;
+			}
+
+
+			.button1
+			{
+				width : 100%;
+				background-color : rgba(147,112,219,0.9);
+				margin-bottom : 1%;
+
+			}
+
+			.error
+			{
+				margin-top : 3%;
+				margin-bottom : 3%;
+				color : red;
+				font-size : 30px;
+			}
+			.button
+			{
+				font-size: 1em;
+				text-align: center;
+				color: black;
+				background: none;
+				border: none;
+				cursor: pointer;
+				display: inline-block;
+  				border: 2px solid #6a5acd;
+				border-radius : 10%;
+				width : 100%;
+
+			}
+			.tablebutton
+			{
+				font-size: 1em;
+				text-align: center;
+				color: black;
+				background: none;
+				border: none;
+				cursor: pointer;
+				display: inline-block;
+  				border: 2px solid #6a5acd;
+				background-color: rgba(0,0,255,0.2);
+				border-radius : 10%;
+				width : 100%;
+
+			}
+			.tablebutton:hover {
+			    background-color: #6a5acd;
+			    color: white;
+			}
+
+			.transparentbutton
+			{
+				font-size: 1em;
+				text-align: left;
+				color: #191970;
+				background: none;
+				margin: 0;
+
+				margin-top : 1%;
+				margin-bottom : 1%;
+				border: none;
+				cursor: pointer;
+
+			}
+			.button:hover {
+			    background-color: #6a5acd;
+			    color: white;
+			}
+			.current
+			{
+				font-size : 30px;
+				color : red;
+			}
+
+
+		</style>
+		<meta charset="utf-8"/>
+
+
+	</head>
+	<body>
+		<div class = "nav">
+			<p>Welcome {{ user.email() }}
+		</div>
+		<div class = "sidenav">
+			<br/><br/><br/><br/><br/>
+			<form method = "get" action="/main">
+                <input type = "submit" value = "Main" name = "button" class ="button"/>
+                <input type="hidden" value = "{{ user.email() }}" name="email_id" />
+			</form>
+			<br/><br/><br/>
+			<form method = "post" action="/sharedfiles">
+					<input type = "submit" value = "Shared Files" name = "button" class ="button"/>
+					<input type="hidden" value = "{{ user.email() }}" name="email_id" />
+			</form>
+			<br/><br/><br>
+			<br/>
+			<form method = "post" action="/restorefile">
+					<input type = "submit" value = "Bin" name = "button" class ="button"/>
+					<input type="hidden" value = "{{ user.email() }}" name="email_id" />
+			</form>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<a href="{{logout}}">Logout</a>
+			<br/>
+		</div>
+		<div class="main" align="center">
+			<p class="current">{{error_message}}</p>
+		</div>
